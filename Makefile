@@ -49,7 +49,7 @@ clean:
 	rm -f $(PROJECT) web/$(PROJECT).js web/*.js.map web/*.js.map *~ source/*.o web/*.wasm web/*.wast
 
 test: debug debug-web
-	./evoke | grep -q 'Hello, world!' && echo 'matched!' || exit 1
+	./evoke | grep -q 'Update' && echo 'matched!' && exit 0 || exit 1
 	npm install
 	echo "const puppeteer = require('puppeteer'); var express = require('express'); var app = express(); app.use(express.static('web')); app.listen(3000); express.static.mime.types['wasm'] = 'application/wasm'; function sleep(millis) { return new Promise(resolve => setTimeout(resolve, millis)); } async function run() { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.goto('http://localhost:3000/evoke.html'); await sleep(1000); const html = await page.content(); console.log(html); browser.close(); process.exit(0); } run();" | node | tr -d '\n' | grep -q "Each circle" && echo "matched!" || exit 1
 
