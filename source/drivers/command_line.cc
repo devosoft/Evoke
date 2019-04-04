@@ -24,7 +24,7 @@ public:
 
 int main() {
   std::cout << "Welcome to E\\/OKE!" << std::endl;
-  
+
   // emp::Config config;
   // std::cout << config.RANDOM_SEED() << std::endl;
   // config.RANDOM_SEED(40);
@@ -39,5 +39,3 @@ int main() {
 
   return 0;
 }
-
-
